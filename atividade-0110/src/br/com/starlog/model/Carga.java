@@ -1,0 +1,81 @@
+package br.com.starlog.model;
+
+import java.util.Objects;
+
+public class Carga {
+
+    public final String codigoRastreio;
+    private String categoria;
+    private double pesoKg;
+    private double valorSeguro;
+
+    public Carga(String codigoRastreio, String categoria, double pesoKg, double valorSeguro) {
+
+        if (codigoRastreio == null || codigoRastreio.trim().isEmpty()) {
+            throw new IllegalArgumentException("Código de rastreio da carga não pode ser nulo ou vazio.");
+        }
+
+        if (pesoKg <= 0) {
+            throw new IllegalArgumentException("Peso do produto deve ser maior que zero");
+        }
+
+        this.codigoRastreio = codigoRastreio;
+        this.categoria = categoria;
+        this.pesoKg = pesoKg;
+        this.valorSeguro = valorSeguro;
+    }
+
+    // Métodos Getters e Setters
+    public String getCodigoRastreio() {
+        return codigoRastreio;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public double getPesoKg() {
+        return pesoKg;
+    }
+
+    public void setPesoKg(double pesoKg) {
+        this.pesoKg = pesoKg;
+    }
+
+    public double getValorSeguro() {
+        return valorSeguro;
+    }
+
+    public void setValorSeguro(double valorSeguro) {
+        this.valorSeguro = valorSeguro;
+    }
+
+    // Equals e hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Carga carga = (Carga) o;
+        return Objects.equals(codigoRastreio, carga.codigoRastreio);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(codigoRastreio);
+    }
+
+    // Metodo toString
+
+    @Override
+    public String toString() {
+        return "Carga [" +
+                "rastreio='" + codigoRastreio +
+                ", categoria='" + categoria +
+                ", peso=" + pesoKg +
+                ", seguro=R$" + valorSeguro +
+                ']';
+    }
+}
